@@ -27,10 +27,12 @@ client.on("ready", function () {
 
 
 //callback para fazer a interpretação da mensagem
-client.on("message", function(message){
-    
+client.on("message", async function(message){
+    const chat = await message.getChat()
+
+    const messages = await chat.fetchMessages({ limit: 10 })
+
+    console.log(messages)
 })
 
-//TODO: Remover > Utilizado apenas em testes iniciais.
-console.log("Teste de inicialização")
 client.initialize()
